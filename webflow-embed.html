@@ -1,0 +1,22 @@
+<!-- ================================================================
+  Webflow Embed element — place ONCE on the "Country Guide" CMS
+  template page. Total size ~600 chars: far under the 50,000-char
+  Embed limit, and identical for every country.
+
+  The {{wf ...}} token is Webflow's CMS field binding: bind it to
+  the Collection's "tax-config-json" Plain Text field. Editors add
+  a country by pasting that country's config JSON into the field.
+================================================================ -->
+
+<div id="kleos-calc"></div>
+
+<!-- optional: place a second embed lower on the page for the quiz -->
+<div id="kleos-classify"></div>
+
+<script type="application/json" id="kleos-config">
+{{wf {"path":"tax-config-json","type":"PlainText"} }}
+</script>
+
+<!-- One script for all countries. Pin a version tag for cache safety:
+     @v1.0.0 instead of @main once you tag a release. -->
+<script defer src="https://cdn.jsdelivr.net/gh/YOURORG/YOURREPO@main/kleos-tax-engine.js"></script>

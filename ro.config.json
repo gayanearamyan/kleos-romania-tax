@@ -1,0 +1,355 @@
+{
+  "country": "ro",
+  "year": 2026,
+  "currency": "RON",
+  "eurRate": 5.07,
+  "usdRate": 4.62,
+  "defaultLang": "en",
+  "anchors": {
+    "SM": 4050
+  },
+  "defaults": {
+    "gross": 240000,
+    "netMonthly": 12000
+  },
+  "ui": {
+    "mode_fwd": {
+      "en": "I know the gross",
+      "ro": "Știu cât facturez"
+    },
+    "mode_rev": {
+      "en": "I want a target net",
+      "ro": "Vreau un net anume"
+    },
+    "lbl_gross": {
+      "en": "Annual gross income (RON / year)",
+      "ro": "Venit brut anual (RON / an)"
+    },
+    "lbl_net_target": {
+      "en": "Target net income (RON / month)",
+      "ro": "Net dorit (RON / lună)"
+    },
+    "r_gross": {
+      "en": "Gross income",
+      "ro": "Venit brut"
+    },
+    "r_exp": {
+      "en": "Deductible expenses",
+      "ro": "Cheltuieli deductibile"
+    },
+    "r_net": {
+      "en": "Net in pocket / year",
+      "ro": "Net în buzunar / an"
+    },
+    "res_monthly": {
+      "en": "Net per month",
+      "ro": "Net pe lună"
+    },
+    "res_effective": {
+      "en": "Effective tax rate",
+      "ro": "Rata efectivă de taxare"
+    },
+    "rev_result": {
+      "en": "To net {NET}/month, agree on a gross of about {GROSS}/year ({MONTH}/month).",
+      "ro": "Pentru un net de {NET}/lună, negociază un brut de aproximativ {GROSS}/an ({MONTH}/lună)."
+    }
+  },
+  "regimes": [
+    {
+      "id": "real",
+      "label": {
+        "en": "PFA — real system",
+        "ro": "PFA — sistem real"
+      },
+      "inputs": [
+        {
+          "id": "expenses",
+          "type": "number",
+          "default": 12000,
+          "label": {
+            "en": "Deductible expenses (RON / year)",
+            "ro": "Cheltuieli deductibile (RON / an)"
+          },
+          "hint": {
+            "en": "Equipment, software, workspace, accounting — business-related and invoiced.",
+            "ro": "Echipamente, software, spațiu de lucru, contabilitate — justificate și legate de activitate."
+          }
+        },
+        {
+          "id": "salaried",
+          "type": "checkbox",
+          "label": {
+            "en": "Also has an employment contract (CIM) — removes the CASS minimum floor",
+            "ro": "Are și contract de muncă (CIM) — dispare plafonul minim CASS"
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": "cas",
+          "op": "steppedBase",
+          "base": "net",
+          "rate": 0.25,
+          "thresholds": [
+            [
+              12,
+              "SM"
+            ],
+            [
+              24,
+              "SM"
+            ]
+          ],
+          "label": {
+            "en": "CAS — pension (25%)",
+            "ro": "CAS — pensie (25%)"
+          }
+        },
+        {
+          "id": "cass",
+          "op": "clampedBase",
+          "base": "net",
+          "rate": 0.1,
+          "floor": [
+            6,
+            "SM"
+          ],
+          "floorUnless": "salaried",
+          "cap": [
+            72,
+            "SM"
+          ],
+          "label": {
+            "en": "CASS — health (10%)",
+            "ro": "CASS — sănătate (10%)"
+          }
+        },
+        {
+          "id": "tax",
+          "op": "rateOnRemainder",
+          "base": "net",
+          "rate": 0.1,
+          "deduct": [
+            "cas",
+            "cass"
+          ],
+          "label": {
+            "en": "Income tax (10%)",
+            "ro": "Impozit pe venit (10%)"
+          }
+        }
+      ],
+      "assumptions": {
+        "en": "Assumes: PFA in the real system, 2026 thresholds (min. wage 4,050 RON), CAS base at 12 / 24 minimum salaries, CASS between 6 and 72 minimum salaries, contributions deductible before the 10% tax. CAS below the 12-salary threshold is optional and not included.",
+        "ro": "Presupuneri: PFA în sistem real, plafoane 2026 (salariu minim 4.050 RON), CAS la baza de 12 / 24 salarii minime, CASS între 6 și 72 de salarii minime, contribuțiile deductibile înainte de impozitul de 10%. CAS sub plafonul de 12 salarii este opțional și nu e inclus."
+      }
+    },
+    {
+      "id": "norma",
+      "label": {
+        "en": "PFA — income norm",
+        "ro": "PFA — normă de venit"
+      },
+      "inputs": [
+        {
+          "id": "norm",
+          "type": "number",
+          "default": 45000,
+          "label": {
+            "en": "Annual income norm (RON)",
+            "ro": "Norma anuală de venit (RON)"
+          },
+          "hint": {
+            "en": "Fixed by ANAF per county and activity. Tax is owed on the norm, not actual income.",
+            "ro": "Stabilită de ANAF pe județ și activitate. Taxele se datorează la normă, nu la venitul real."
+          }
+        },
+        {
+          "id": "salaried",
+          "type": "checkbox",
+          "label": {
+            "en": "Also has an employment contract (CIM) — removes the CASS minimum floor",
+            "ro": "Are și contract de muncă (CIM) — dispare plafonul minim CASS"
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": "cas",
+          "op": "steppedBase",
+          "base": "norm",
+          "rate": 0.25,
+          "thresholds": [
+            [
+              12,
+              "SM"
+            ],
+            [
+              24,
+              "SM"
+            ]
+          ],
+          "label": {
+            "en": "CAS — pension (25%)",
+            "ro": "CAS — pensie (25%)"
+          }
+        },
+        {
+          "id": "cass",
+          "op": "clampedBase",
+          "base": "norm",
+          "rate": 0.1,
+          "floor": [
+            6,
+            "SM"
+          ],
+          "floorUnless": "salaried",
+          "cap": [
+            72,
+            "SM"
+          ],
+          "label": {
+            "en": "CASS — health (10%)",
+            "ro": "CASS — sănătate (10%)"
+          }
+        },
+        {
+          "id": "tax",
+          "op": "rateOn",
+          "base": "norm",
+          "rate": 0.1,
+          "label": {
+            "en": "Income tax (10% of norm)",
+            "ro": "Impozit pe venit (10% din normă)"
+          }
+        }
+      ],
+      "assumptions": {
+        "en": "Assumes: norm allowed only if previous-year income ≤ €25,000. Tax and contributions are owed on the norm even if actual income is higher. Norm values vary by city and CAEN code.",
+        "ro": "Presupuneri: norma e permisă doar dacă venitul din anul anterior ≤ 25.000 €. Taxele se datorează la normă chiar dacă venitul real e mai mare. Normele diferă pe oraș și cod CAEN."
+      }
+    },
+    {
+      "id": "srl",
+      "label": {
+        "en": "Micro-SRL",
+        "ro": "Micro-SRL"
+      },
+      "inputs": [
+        {
+          "id": "expenses",
+          "type": "number",
+          "default": 12000,
+          "label": {
+            "en": "Company expenses (RON / year)",
+            "ro": "Cheltuieli firmă (RON / an)"
+          }
+        },
+        {
+          "id": "high",
+          "type": "checkbox",
+          "label": {
+            "en": "Activity taxed at 3% (e.g. consultancy > 20% of revenue) or revenue over €60,000",
+            "ro": "Activitate taxată cu 3% (ex. consultanță > 20% din venituri) sau venituri peste 60.000 €"
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": "rev",
+          "op": "rateOn",
+          "base": "gross",
+          "rate": 0.01,
+          "rateIf": {
+            "input": "high",
+            "rate": 0.03
+          },
+          "label": {
+            "en": "Micro revenue tax",
+            "ro": "Impozit micro pe venit"
+          }
+        },
+        {
+          "id": "div",
+          "op": "rateOnRemainder",
+          "base": "net",
+          "rate": 0.16,
+          "deduct": [
+            "rev"
+          ],
+          "label": {
+            "en": "Dividend tax (16%)",
+            "ro": "Impozit dividende (16%)"
+          }
+        },
+        {
+          "id": "cassdiv",
+          "op": "steppedBase",
+          "base": "net",
+          "rate": 0.1,
+          "thresholds": [
+            [
+              6,
+              "SM"
+            ],
+            [
+              12,
+              "SM"
+            ],
+            [
+              24,
+              "SM"
+            ]
+          ],
+          "label": {
+            "en": "CASS on dividends",
+            "ro": "CASS pe dividende"
+          }
+        }
+      ],
+      "assumptions": {
+        "en": "Simplified: full profit distributed as dividends, 2026 dividend tax 16%, CASS on dividends capped at the 24-salary band. Excludes mandatory administrator/employee salary, accounting fees (≈ 200–400 RON/month) and the €100,000 micro revenue cap check.",
+        "ro": "Model simplificat: tot profitul distribuit ca dividende, impozit pe dividende 16% (2026), CASS pe dividende plafonat la banda de 24 de salarii. Nu include salariul obligatoriu de administrator/angajat, contabilitatea (≈ 200–400 RON/lună) și plafonul micro de 100.000 €."
+      }
+    }
+  ],
+  "classification": {
+    "passThreshold": 4,
+    "instruction": {
+      "en": "Check every statement that's true for your working arrangement:",
+      "ro": "Bifează fiecare afirmație adevărată pentru relația voastră de lucru:"
+    },
+    "criteria": {
+      "en": [
+        "The person is free to choose where, how, and on what schedule the work gets done",
+        "The person is free to work for more than one client",
+        "The risks of the activity are carried by the person doing the work",
+        "The work uses the person's own assets (laptop, tools, software licences)",
+        "The work relies on the person's own intellectual capacity and/or physical effort",
+        "The person is part of a professional body, or has the freedom to practice the profession independently",
+        "The person can do the work with hired staff or by collaborating with third parties"
+      ],
+      "ro": [
+        "Persoana dispune de libertatea de alegere a locului, modului de lucru și programului",
+        "Persoana are libertatea de a lucra pentru mai mulți clienți",
+        "Riscurile inerente activității sunt asumate de persoana care o desfășoară",
+        "Activitatea se realizează cu patrimoniul propriu (laptop, unelte, licențe software)",
+        "Activitatea se bazează pe capacitatea intelectuală și/sau prestația fizică proprie",
+        "Persoana face parte dintr-un corp profesional sau exercită liber profesia",
+        "Persoana poate desfășura activitatea cu personal angajat sau în colaborare cu terți"
+      ]
+    },
+    "verdictStart": {
+      "en": "Check the boxes above to test the arrangement.",
+      "ro": "Bifează criteriile de mai sus pentru a testa încadrarea."
+    },
+    "verdictPass": {
+      "en": "✓ {N}/{T} criteria met — at least 4 satisfied. The activity qualifies as independent under art. 7 pt. 3.",
+      "ro": "✓ {N}/{T} criterii îndeplinite — minim 4 atinse. Activitatea se încadrează ca independentă conform art. 7 pct. 3."
+    },
+    "verdictFail": {
+      "en": "⚠ Only {N}/{T} criteria met — fewer than 4. High reclassification risk: this may be treated as disguised employment.",
+      "ro": "⚠ Doar {N}/{T} criterii îndeplinite — sub 4. Risc ridicat de reconsiderare: relația poate fi tratată ca angajare mascată."
+    }
+  }
+}
