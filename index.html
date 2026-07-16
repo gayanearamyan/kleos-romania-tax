@@ -187,6 +187,18 @@ section{padding:88px 0}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
 .faq-a p{padding:0 40px 22px 0;font-size:.95rem;color:#555;max-width:70ch}
 
+
+/* ---------- sources & legal basis ---------- */
+.refs{margin-top:16px}
+.refs-toggle{display:inline-flex;align-items:center;gap:7px;font-size:.76rem;font-weight:600;color:var(--grey-mid);background:var(--grey);border:none;border-radius:99px;padding:6px 13px;cursor:pointer}
+.refs-toggle:hover{background:#ECECEC;color:var(--ink)}
+.refs-toggle .n{background:var(--ink);color:#fff;border-radius:99px;padding:1px 7px;font-size:.7rem}
+.refs-panel{display:none;margin-top:10px;font-size:.78rem;color:#666;line-height:1.65;border-left:2px solid var(--grey-line);padding-left:12px;text-align:left}
+.refs.open .refs-panel{display:block}
+.refs-panel a{color:var(--green-dark);text-decoration:underline}
+.refs-panel .src{color:var(--grey-mid)}
+.reviewed{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;color:var(--green-dark);background:#E6F6EA;border-radius:99px;padding:6px 14px;margin-bottom:10px}
+
 /* ---------- footer CTA ---------- */
 .foot-cta{background:var(--ink);color:#fff;border-radius:var(--radius-card);padding:52px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .foot-cta h2{color:#fff;font-size:clamp(1.6rem,3vw,2.4rem);max-width:20ch}
@@ -234,6 +246,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
       <div class="fact"><div class="num">25 <span data-i18n="fact_may"></span></div><div class="lab" data-i18n="fact_deadline"></div></div>
       <div class="fact"><div class="num">3</div><div class="lab" data-i18n="fact_regimes"></div></div>
     </div>
+    <div class="refs" data-refs="facts"></div>
   </div>
 </header>
 
@@ -306,6 +319,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
             </div>
           </div>
           <div class="assump" id="assump"></div>
+          <div class="refs" data-refs="calc"></div>
         </div>
       </div>
     </div>
@@ -329,6 +343,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
           <div><span data-i18n="t1_r1"></span><b data-i18n="t1_v1"></b></div>
           <div><span data-i18n="t1_r2"></span><b>25 <span data-i18n="fact_may"></span></b></div>
         </div>
+        <div class="refs" data-refs="t1"></div>
       </div>
       <div class="tax-card">
         <div class="pct g">25%</div>
@@ -339,6 +354,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
           <div><span data-i18n="t2_r2"></span><b>12,150 RON</b></div>
           <div><span data-i18n="t2_r3"></span><b>24,300 RON</b></div>
         </div>
+        <div class="refs" data-refs="t2"></div>
       </div>
       <div class="tax-card">
         <div class="pct o">10%</div>
@@ -349,6 +365,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
           <div><span data-i18n="t3_r2"></span><b>10% × <span data-i18n="t3_net"></span></b></div>
           <div><span data-i18n="t3_r3"></span><b>29,160 RON</b></div>
         </div>
+        <div class="refs" data-refs="t3"></div>
       </div>
     </div>
     <div class="timeline">
@@ -357,6 +374,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
       <div class="tl-item"><div class="tl-when" data-i18n="tl2_w"></div><div class="tl-what"><h3 data-i18n="tl2_h"></h3><p data-i18n="tl2_p"></p></div></div>
       <div class="tl-item"><div class="tl-when" data-i18n="tl3_w"></div><div class="tl-what"><h3 data-i18n="tl3_h"></h3><p data-i18n="tl3_p"></p></div></div>
       <div class="tl-item"><div class="tl-when" data-i18n="tl4_w"></div><div class="tl-what"><h3 data-i18n="tl4_h"></h3><p data-i18n="tl4_p"></p></div></div>
+      <div class="refs" data-refs="timeline"></div>
     </div>
   </div>
 </section>
@@ -372,6 +390,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
       <p style="font-size:.9rem;color:var(--grey-mid);margin-bottom:10px" data-i18n="cl_instr"></p>
       <div id="criteria"></div>
       <div class="verdict" id="verdict"></div>
+      <div class="refs" data-refs="classify"></div>
     </div>
   </div>
 </section>
@@ -385,6 +404,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
       <p class="muted" data-i18n="cs_sub"></p>
     </div>
     <div class="cases" id="cases-grid"></div>
+    <div class="refs" data-refs="cases"></div>
   </div>
 </section>
 
@@ -413,6 +433,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
       <span class="logo" style="font-size:1.2rem">Kleos</span>
       <span>© 2026 Kleos</span>
     </div>
+    <div style="margin-top:16px"><span class="reviewed" id="reviewed-line"></span></div>
     <p class="disclaimer" data-i18n="disclaimer"></p>
   </div>
 </footer>
@@ -425,6 +446,7 @@ footer{padding:44px 0 60px;font-size:.8rem;color:var(--grey-mid)}
    ============================================================ */
 const TAX_CONFIG = {
   year: 2026,
+  reviewedOn: '2026-07-16',  // update after each expert review
   minWage: 4050,            // RON/month, Jan 1 2026 anchor
   eurRon: 5.07,             // indicative rates for display only
   usdRon: 4.62,             // update alongside eurRon
@@ -512,6 +534,7 @@ function solveGross(targetNetMonthly){
 /* ---------- i18n ---------- */
 const I18N = {
 en: {
+  refs_label:'Sources & legal basis',
   nav_calc:'Calculator', nav_how:'How taxes work', nav_class:'Classification', nav_cases:'Special cases', nav_cta:'Book a demo',
   hero_eyebrow:'Romania · Contractor taxation guide · 2026',
   hero_h1:'Hiring in Romania? Here\u2019s where the money <span class="accent">actually goes.</span>',
@@ -520,7 +543,7 @@ en: {
   fact_flat:'flat income tax \u2014 one of the lowest in the EU',
   fact_minwage:'minimum gross wage (Jan 1, 2026) \u2014 anchors every threshold',
   fact_may:'May', fact_deadline:'annual filing deadline (Declara\u021bia Unic\u0103)',
-  fact_regimes:'legal setups a contractor can invoice through',
+  fact_regimes:'common legal setups a contractor can invoice through',
   calc_h2:'Gross to net. No mystery left.',
   calc_sub:'Pick the contractor\u2019s setup, type the yearly amount you\u2019ll pay them, and watch every leu get accounted for.',
   tab_real:'real system', tab_norma:'income norm', tab_srl:'1% \u2013 3% + dividends',
@@ -597,6 +620,7 @@ en: {
   disclaimer:'This page is for general information only and does not constitute tax, legal or accounting advice. Figures reflect the 2026 Romanian fiscal framework (Law 227/2015 as amended) and simplified assumptions stated next to each calculation. Individual circumstances vary \u2014 consult a licensed Romanian accountant or tax advisor before making decisions.'
 },
 ro: {
+  refs_label:'Surse \u0219i temei legal',
   nav_calc:'Calculator', nav_how:'Cum func\u021bioneaz\u0103', nav_class:'\u00CEncadrare', nav_cases:'Cazuri speciale', nav_cta:'Programeaz\u0103 un demo',
   hero_eyebrow:'Rom\u00E2nia \u00B7 Ghid de taxare pentru contractori \u00B7 2026',
   hero_h1:'Lucrezi ca contractor? Uite unde se duc <span class="accent">banii, de fapt.</span>',
@@ -605,7 +629,7 @@ ro: {
   fact_flat:'impozit unic pe venit \u2014 printre cele mai mici din UE',
   fact_minwage:'salariul minim brut (1 ian. 2026) \u2014 ancora tuturor plafoanelor',
   fact_may:'mai', fact_deadline:'termenul anual de depunere (Declara\u021Bia Unic\u0103)',
-  fact_regimes:'forme legale prin care poate factura un contractor',
+  fact_regimes:'forme legale uzuale prin care poate factura un contractor',
   calc_h2:'De la brut la net. F\u0103r\u0103 surprize.',
   calc_sub:'Alege forma de organizare, introdu suma anual\u0103 facturat\u0103 \u0219i vezi unde ajunge fiecare leu.',
   tab_real:'sistem real', tab_norma:'norm\u0103 de venit', tab_srl:'1% \u2013 3% + dividende',
@@ -683,6 +707,74 @@ ro: {
 }
 };
 
+
+/* ============================================================
+   REFS — sources & legal basis per section. Shown as collapsible
+   chips so the page doubles as a citable reference. Verify deep
+   links periodically; legislative portals reorganize URLs.
+   ============================================================ */
+const LEG = 'https://legislatie.just.ro/Public/DetaliiDocument/171282'; // Legea 227/2015 (Codul fiscal)
+const ANAF = 'https://www.anaf.ro';
+const REFS = {
+  facts: [
+    {t:{en:'10% flat tax on independent-activity income',ro:'Impozit de 10% pe venituri din activit\u0103\u021bi independente'}, s:'Legea 227/2015, art. 64', u:LEG},
+    {t:{en:'Minimum gross wage 4,050 RON \u2014 Jan 1, 2026 anchor for all thresholds',ro:'Salariu minim brut 4.050 RON \u2014 ancora de la 1 ian. 2026 pentru toate plafoanele'}, s:'HG salariu minim 2026; art. 148(4), 170(4)', u:LEG},
+    {t:{en:'Annual filing via Declara\u021bia Unic\u0103 (form 212), deadline May 25',ro:'Depunere anual\u0103 prin Declara\u021bia Unic\u0103 (formular 212), termen 25 mai'}, s:'ANAF \u2014 Declara\u021bia Unic\u0103', u:ANAF}
+  ],
+  calc: {
+    real: [
+      {t:{en:'Net income determination and deductible expenses',ro:'Stabilirea venitului net \u0219i cheltuielile deductibile'}, s:'Legea 227/2015, art. 68', u:LEG},
+      {t:{en:'CAS 25%: 12 / 24 minimum-salary threshold bases',ro:'CAS 25%: baze la plafoanele de 12 / 24 salarii minime'}, s:'art. 148', u:LEG},
+      {t:{en:'CASS 10%: 6-salary floor, 72-salary cap (2026), exceptions for salaried persons',ro:'CASS 10%: prag 6 salarii, plafon 72 salarii (2026), excep\u021bii pentru salaria\u021bi'}, s:'art. 170, 174', u:LEG},
+      {t:{en:'Benchmark: 120,000 RON \u2192 CAS 24,300 / CASS 12,000 / tax 8,370 / net 75,330',ro:'Reper: 120.000 RON \u2192 CAS 24.300 / CASS 12.000 / impozit 8.370 / net 75.330'}, s:'verificat cu exemplul publicat REGNET', u:'https://regnet.ro/calculator-taxe-pfa-2026'}
+    ],
+    norma: [
+      {t:{en:'Income-norm regime; ANAF county norms; \u20ac25,000 prior-year eligibility cap',ro:'Regimul normei de venit; norme ANAF pe jude\u021b; plafon de eligibilitate 25.000 \u20ac'}, s:'Legea 227/2015, art. 69', u:LEG},
+      {t:{en:'CAS/CASS thresholds applied to the norm value',ro:'Plafoanele CAS/CASS raportate la valoarea normei'}, s:'art. 148, 170', u:LEG}
+    ],
+    srl: [
+      {t:{en:'Micro-enterprise regime: 1% / 3% revenue tax, eligibility conditions',ro:'Regimul micro: impozit 1% / 3% pe venituri, condi\u021bii de eligibilitate'}, s:'Legea 227/2015, art. 47, 51', u:LEG},
+      {t:{en:'Dividend tax 16% from Jan 1, 2026',ro:'Impozit pe dividende 16% de la 1 ian. 2026'}, s:'Legea 141/2025 (pachet fiscal)', u:'https://legislatie.just.ro'},
+      {t:{en:'CASS on dividend income \u2014 6 / 12 / 24 salary bands',ro:'CASS pe dividende \u2014 benzile de 6 / 12 / 24 salarii'}, s:'art. 170(2)', u:LEG}
+    ]
+  },
+  t1: [ {t:{en:'Flat 10% rate; taxable base after contributions',ro:'Cota unic\u0103 10%; baza impozabil\u0103 dup\u0103 contribu\u021bii'}, s:'Legea 227/2015, art. 64, 68', u:LEG} ],
+  t2: [ {t:{en:'CAS for independent activities \u2014 threshold bases',ro:'CAS pentru activit\u0103\u021bi independente \u2014 baze la plafoane'}, s:'Legea 227/2015, art. 148', u:LEG} ],
+  t3: [ {t:{en:'CASS \u2014 floor, cap and exceptions',ro:'CASS \u2014 prag, plafon \u0219i excep\u021bii'}, s:'Legea 227/2015, art. 170, 174', u:LEG} ],
+  timeline: [
+    {t:{en:'PFA/SRL registration at the Trade Registry',ro:'\u00cenregistrarea PFA/SRL la Registrul Comer\u021bului'}, s:'ONRC', u:'https://www.onrc.ro'},
+    {t:{en:'RO e-Factura mandatory B2B e-invoicing (5-working-day reporting)',ro:'RO e-Factura \u2014 facturare electronic\u0103 B2B obligatorie (raportare 5 zile lucr\u0103toare)'}, s:'OUG 120/2021 \u0219i modific\u0103rile ulterioare', u:'https://mfinante.gov.ro'},
+    {t:{en:'Declara\u021bia Unic\u0103 (form 212) \u2014 filing and payment by May 25; SPV pre-fill from 2026',ro:'Declara\u021bia Unic\u0103 (formular 212) \u2014 depunere \u0219i plat\u0103 p\u00e2n\u0103 pe 25 mai; precompletare \u00een SPV din 2026'}, s:'ANAF', u:ANAF}
+  ],
+  classify: [
+    {t:{en:'The 7 independence criteria \u2014 activity is independent if \u2265 4 are met',ro:'Cele 7 criterii de independen\u021b\u0103 \u2014 activitatea e independent\u0103 dac\u0103 \u2265 4 sunt \u00eendeplinite'}, s:'Legea 227/2015, art. 7 pct. 3', u:LEG},
+    {t:{en:'Reconsideration of activity and retroactive taxation as salary',ro:'Reconsiderarea activit\u0103\u021bii \u0219i retaxarea retroactiv\u0103 ca salariu'}, s:'art. 7; Codul de procedur\u0103 fiscal\u0103', u:LEG}
+  ],
+  cases: [
+    {t:{en:'CASS exceptions (salaried persons; specific exempt categories incl. students)',ro:'Excep\u021bii CASS (salaria\u021bi; categorii scutite, incl. studen\u021bi)'}, s:'Legea 227/2015, art. 154, 174', u:LEG},
+    {t:{en:'Pensioners exempt from CAS on independent-activity income',ro:'Pensionarii scuti\u021bi de CAS pentru venituri din activit\u0103\u021bi independente'}, s:'art. 150', u:LEG},
+    {t:{en:'VAT registration threshold 395,000 RON (from Sept 2025); B2B cross-border place-of-supply',ro:'Plafon TVA 395.000 RON (din sept. 2025); locul prest\u0103rii pentru B2B extern'}, s:'art. 310, 278', u:LEG},
+    {t:{en:'FX conversion at NBR rates for tax purposes',ro:'Conversia valutar\u0103 la cursul BNR \u00een scopuri fiscale'}, s:'BNR', u:'https://www.bnr.ro'}
+  ]
+};
+function renderRefs(){
+  document.querySelectorAll('[data-refs]').forEach(el=>{
+    const key = el.dataset.refs;
+    let items = REFS[key];
+    if (key==='calc') items = REFS.calc[state.regime];
+    if (!items){ el.innerHTML=''; return; }
+    const open = el.classList.contains('open');
+    el.innerHTML = `
+      <button class="refs-toggle" aria-expanded="${open}">\u{1F4CE} ${T().refs_label} <span class="n">${items.length}</span></button>
+      <div class="refs-panel">${items.map(r=>
+        `\u2022 ${r.t[state.lang]??r.t.en} \u2014 <span class="src">${r.s}</span>${r.u?` \u00b7 <a href="${r.u}" target="_blank" rel="noopener">link</a>`:''}`
+      ).join('<br>')}</div>`;
+    el.querySelector('.refs-toggle').onclick = ()=>{ el.classList.toggle('open'); el.querySelector('.refs-toggle').setAttribute('aria-expanded', el.classList.contains('open')); };
+  });
+  const rl = document.getElementById('reviewed-line');
+  if (rl) rl.textContent = (state.lang==='ro'?'Revizuit la: ':'Reviewed on: ') + TAX_CONFIG.reviewedOn + (state.lang==='ro'?' \u00b7 an fiscal ':' \u00b7 fiscal year ') + TAX_CONFIG.year;
+}
+
 /* ---------- state & render ---------- */
 const state = { lang:'en', regime:'real', mode:'fwd', crit:[0,0,0,0,0,0,0] };
 const $ = id => document.getElementById(id);
@@ -695,7 +787,7 @@ function setLang(l){
   document.documentElement.lang = l;
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = T()[el.dataset.i18n] ?? el.dataset.i18n; });
   document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = T()[el.dataset.i18nHtml] ?? ''; });
-  renderCriteria(); renderCases(); renderFAQ(); calc();
+  renderCriteria(); renderCases(); renderFAQ(); calc(); renderRefs();
 }
 function setRegime(r){
   state.regime = r;
@@ -704,7 +796,7 @@ function setRegime(r){
   $('f-norm').style.display  = (r==='norma') ? '' : 'none';
   $('f-salaried').style.display = (r==='srl') ? 'none' : '';
   $('f-srl3').style.display  = (r==='srl') ? '' : 'none';
-  calc();
+  calc(); renderRefs();
 }
 function setMode(m){
   state.mode = m;
