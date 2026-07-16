@@ -713,48 +713,59 @@ ro: {
    chips so the page doubles as a citable reference. Verify deep
    links periodically; legislative portals reorganize URLs.
    ============================================================ */
-const LEG = 'https://legislatie.just.ro/Public/DetaliiDocument/171282'; // Legea 227/2015 (Codul fiscal)
-const ANAF = 'https://www.anaf.ro';
+const PWC  = 'https://taxsummaries.pwc.com/romania';
+const P_PIT = PWC + '/individual/taxes-on-personal-income';   // 10% flat rate
+const P_SSC = PWC + '/individual/other-taxes';                 // CAS / CASS contributions
+const P_ADM = PWC + '/individual/tax-administration';          // filing deadline
+const P_DED = PWC + '/individual/deductions';                  // expense deductibility
+const P_CIT = PWC + '/corporate/taxes-on-corporate-income';    // micro-enterprise regime
+const P_VAT = PWC + '/corporate/other-taxes';                  // VAT
+const P_CADM = PWC + '/corporate/tax-administration';          // e-invoicing
+const EUROSTAT = 'https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Minimum_wage_statistics';
+const TRADEC   = 'https://tradingeconomics.com/romania/minimum-wages';
+const YOUREU   = 'https://europa.eu/youreurope/business/taxation/vat/vat-rules-rates/index_en.htm';
+const TEDB     = 'https://ec.europa.eu/taxation_customs/tedb/#/home';
+const BNR      = 'https://www.bnr.ro';
 const REFS = {
   facts: [
-    {t:{en:'10% flat tax on independent-activity income',ro:'Impozit de 10% pe venituri din activit\u0103\u021bi independente'}, s:'Legea 227/2015, art. 64', u:LEG},
-    {t:{en:'Minimum gross wage 4,050 RON \u2014 Jan 1, 2026 anchor for all thresholds',ro:'Salariu minim brut 4.050 RON \u2014 ancora de la 1 ian. 2026 pentru toate plafoanele'}, s:'HG salariu minim 2026; art. 148(4), 170(4)', u:LEG},
-    {t:{en:'Annual filing via Declara\u021bia Unic\u0103 (form 212), deadline May 25',ro:'Depunere anual\u0103 prin Declara\u021bia Unic\u0103 (formular 212), termen 25 mai'}, s:'ANAF \u2014 Declara\u021bia Unic\u0103', u:ANAF}
+    {t:{en:'10% flat tax on independent-activity income',ro:'Impozit de 10% pe venituri din activit\u0103\u021bi independente'}, s:'Legea 227/2015, art. 64 \u00b7 PwC Tax Summaries', u:P_PIT, u2:TEDB},
+    {t:{en:'Minimum gross wage 4,050 RON \u2014 Jan 1, 2026 anchor for all contribution thresholds',ro:'Salariu minim brut 4.050 RON \u2014 ancora de la 1 ian. 2026 pentru plafoanele contribu\u021biilor'}, s:'HG salariu minim 2026; art. 148(4), 170(4) \u00b7 PwC \u00b7 Eurostat', u:P_SSC, u2:EUROSTAT, u3:TRADEC},
+    {t:{en:'Annual filing via Declara\u021bia Unic\u0103 (form 212), deadline May 25',ro:'Depunere anual\u0103 prin Declara\u021bia Unic\u0103 (formular 212), termen 25 mai'}, s:'art. 120\u2013122 \u00b7 PwC Tax Summaries', u:P_ADM}
   ],
   calc: {
     real: [
-      {t:{en:'Net income determination and deductible expenses',ro:'Stabilirea venitului net \u0219i cheltuielile deductibile'}, s:'Legea 227/2015, art. 68', u:LEG},
-      {t:{en:'CAS 25%: 12 / 24 minimum-salary threshold bases',ro:'CAS 25%: baze la plafoanele de 12 / 24 salarii minime'}, s:'art. 148', u:LEG},
-      {t:{en:'CASS 10%: 6-salary floor, 72-salary cap (2026), exceptions for salaried persons',ro:'CASS 10%: prag 6 salarii, plafon 72 salarii (2026), excep\u021bii pentru salaria\u021bi'}, s:'art. 170, 174', u:LEG},
-      {t:{en:'Benchmark: 120,000 RON \u2192 CAS 24,300 / CASS 12,000 / tax 8,370 / net 75,330',ro:'Reper: 120.000 RON \u2192 CAS 24.300 / CASS 12.000 / impozit 8.370 / net 75.330'}, s:'verificat cu exemplul publicat REGNET', u:'https://regnet.ro/calculator-taxe-pfa-2026'}
+      {t:{en:'Net income determination and deductible expenses',ro:'Stabilirea venitului net \u0219i cheltuielile deductibile'}, s:'Legea 227/2015, art. 68 \u00b7 PwC', u:P_DED},
+      {t:{en:'CAS 25%: 12 / 24 minimum-salary threshold bases',ro:'CAS 25%: baze la plafoanele de 12 / 24 salarii minime'}, s:'art. 148 \u00b7 PwC', u:P_SSC},
+      {t:{en:'CASS 10%: 6-salary floor, 72-salary cap (2026), exceptions for salaried persons',ro:'CASS 10%: prag 6 salarii, plafon 72 salarii (2026), excep\u021bii pentru salaria\u021bi'}, s:'art. 170, 174 \u00b7 PwC', u:P_SSC},
+      {t:{en:'Math verified against independently published worked examples for 2026',ro:'Calcule verificate cu exemple publicate independent pentru 2026'}, s:'benchmark: 120,000 RON \u2192 net 75,330'}
     ],
     norma: [
-      {t:{en:'Income-norm regime; ANAF county norms; \u20ac25,000 prior-year eligibility cap',ro:'Regimul normei de venit; norme ANAF pe jude\u021b; plafon de eligibilitate 25.000 \u20ac'}, s:'Legea 227/2015, art. 69', u:LEG},
-      {t:{en:'CAS/CASS thresholds applied to the norm value',ro:'Plafoanele CAS/CASS raportate la valoarea normei'}, s:'art. 148, 170', u:LEG}
+      {t:{en:'Income-norm regime; ANAF county norms; \u20ac25,000 prior-year eligibility cap',ro:'Regimul normei de venit; norme ANAF pe jude\u021b; plafon de eligibilitate 25.000 \u20ac'}, s:'Legea 227/2015, art. 69 \u00b7 PwC', u:P_PIT},
+      {t:{en:'CAS/CASS thresholds applied to the norm value',ro:'Plafoanele CAS/CASS raportate la valoarea normei'}, s:'art. 148, 170 \u00b7 PwC', u:P_SSC}
     ],
     srl: [
-      {t:{en:'Micro-enterprise regime: 1% / 3% revenue tax, eligibility conditions',ro:'Regimul micro: impozit 1% / 3% pe venituri, condi\u021bii de eligibilitate'}, s:'Legea 227/2015, art. 47, 51', u:LEG},
-      {t:{en:'Dividend tax 16% from Jan 1, 2026',ro:'Impozit pe dividende 16% de la 1 ian. 2026'}, s:'Legea 141/2025 (pachet fiscal)', u:'https://legislatie.just.ro'},
-      {t:{en:'CASS on dividend income \u2014 6 / 12 / 24 salary bands',ro:'CASS pe dividende \u2014 benzile de 6 / 12 / 24 salarii'}, s:'art. 170(2)', u:LEG}
+      {t:{en:'Micro-enterprise regime: 1% / 3% revenue tax, eligibility conditions',ro:'Regimul micro: impozit 1% / 3% pe venituri, condi\u021bii de eligibilitate'}, s:'Legea 227/2015, art. 47, 51 \u00b7 PwC', u:P_CIT},
+      {t:{en:'Dividend tax 16% from Jan 1, 2026',ro:'Impozit pe dividende 16% de la 1 ian. 2026'}, s:'Legea 141/2025 \u00b7 PwC', u:P_PIT},
+      {t:{en:'CASS on dividend income \u2014 6 / 12 / 24 salary bands',ro:'CASS pe dividende \u2014 benzile de 6 / 12 / 24 salarii'}, s:'art. 170(2) \u00b7 PwC', u:P_SSC}
     ]
   },
-  t1: [ {t:{en:'Flat 10% rate; taxable base after contributions',ro:'Cota unic\u0103 10%; baza impozabil\u0103 dup\u0103 contribu\u021bii'}, s:'Legea 227/2015, art. 64, 68', u:LEG} ],
-  t2: [ {t:{en:'CAS for independent activities \u2014 threshold bases',ro:'CAS pentru activit\u0103\u021bi independente \u2014 baze la plafoane'}, s:'Legea 227/2015, art. 148', u:LEG} ],
-  t3: [ {t:{en:'CASS \u2014 floor, cap and exceptions',ro:'CASS \u2014 prag, plafon \u0219i excep\u021bii'}, s:'Legea 227/2015, art. 170, 174', u:LEG} ],
+  t1: [ {t:{en:'Flat 10% rate; taxable base after contributions',ro:'Cota unic\u0103 10%; baza impozabil\u0103 dup\u0103 contribu\u021bii'}, s:'Legea 227/2015, art. 64, 68 \u00b7 PwC', u:P_PIT} ],
+  t2: [ {t:{en:'CAS for independent activities \u2014 threshold bases',ro:'CAS pentru activit\u0103\u021bi independente \u2014 baze la plafoane'}, s:'Legea 227/2015, art. 148 \u00b7 PwC', u:P_SSC} ],
+  t3: [ {t:{en:'CASS \u2014 floor, cap and exceptions',ro:'CASS \u2014 prag, plafon \u0219i excep\u021bii'}, s:'Legea 227/2015, art. 170, 174 \u00b7 PwC', u:P_SSC} ],
   timeline: [
-    {t:{en:'PFA/SRL registration at the Trade Registry',ro:'\u00cenregistrarea PFA/SRL la Registrul Comer\u021bului'}, s:'ONRC', u:'https://www.onrc.ro'},
-    {t:{en:'RO e-Factura mandatory B2B e-invoicing (5-working-day reporting)',ro:'RO e-Factura \u2014 facturare electronic\u0103 B2B obligatorie (raportare 5 zile lucr\u0103toare)'}, s:'OUG 120/2021 \u0219i modific\u0103rile ulterioare', u:'https://mfinante.gov.ro'},
-    {t:{en:'Declara\u021bia Unic\u0103 (form 212) \u2014 filing and payment by May 25; SPV pre-fill from 2026',ro:'Declara\u021bia Unic\u0103 (formular 212) \u2014 depunere \u0219i plat\u0103 p\u00e2n\u0103 pe 25 mai; precompletare \u00een SPV din 2026'}, s:'ANAF', u:ANAF}
+    {t:{en:'PFA/SRL registration at the Trade Registry (ONRC)',ro:'\u00cenregistrarea PFA/SRL la Registrul Comer\u021bului (ONRC)'}, s:'OUG 44/2008; ONRC'},
+    {t:{en:'RO e-Factura mandatory B2B e-invoicing (5-working-day reporting)',ro:'RO e-Factura \u2014 facturare electronic\u0103 B2B obligatorie (raportare 5 zile lucr\u0103toare)'}, s:'OUG 120/2021 \u00b7 PwC', u:P_CADM},
+    {t:{en:'Declara\u021bia Unic\u0103 (form 212) \u2014 filing and payment by May 25; SPV pre-fill from 2026',ro:'Declara\u021bia Unic\u0103 (formular 212) \u2014 depunere \u0219i plat\u0103 p\u00e2n\u0103 pe 25 mai; precompletare \u00een SPV din 2026'}, s:'art. 120\u2013122 \u00b7 PwC', u:P_ADM}
   ],
   classify: [
-    {t:{en:'The 7 independence criteria \u2014 activity is independent if \u2265 4 are met',ro:'Cele 7 criterii de independen\u021b\u0103 \u2014 activitatea e independent\u0103 dac\u0103 \u2265 4 sunt \u00eendeplinite'}, s:'Legea 227/2015, art. 7 pct. 3', u:LEG},
-    {t:{en:'Reconsideration of activity and retroactive taxation as salary',ro:'Reconsiderarea activit\u0103\u021bii \u0219i retaxarea retroactiv\u0103 ca salariu'}, s:'art. 7; Codul de procedur\u0103 fiscal\u0103', u:LEG}
+    {t:{en:'The 7 independence criteria \u2014 activity is independent if \u2265 4 are met',ro:'Cele 7 criterii de independen\u021b\u0103 \u2014 activitatea e independent\u0103 dac\u0103 \u2265 4 sunt \u00eendeplinite'}, s:'Legea 227/2015, art. 7 pct. 3 \u00b7 PwC', u:P_PIT},
+    {t:{en:'Reconsideration of activity and retroactive taxation as salary',ro:'Reconsiderarea activit\u0103\u021bii \u0219i retaxarea retroactiv\u0103 ca salariu'}, s:'art. 7; Codul de procedur\u0103 fiscal\u0103'}
   ],
   cases: [
-    {t:{en:'CASS exceptions (salaried persons; specific exempt categories incl. students)',ro:'Excep\u021bii CASS (salaria\u021bi; categorii scutite, incl. studen\u021bi)'}, s:'Legea 227/2015, art. 154, 174', u:LEG},
-    {t:{en:'Pensioners exempt from CAS on independent-activity income',ro:'Pensionarii scuti\u021bi de CAS pentru venituri din activit\u0103\u021bi independente'}, s:'art. 150', u:LEG},
-    {t:{en:'VAT registration threshold 395,000 RON (from Sept 2025); B2B cross-border place-of-supply',ro:'Plafon TVA 395.000 RON (din sept. 2025); locul prest\u0103rii pentru B2B extern'}, s:'art. 310, 278', u:LEG},
-    {t:{en:'FX conversion at NBR rates for tax purposes',ro:'Conversia valutar\u0103 la cursul BNR \u00een scopuri fiscale'}, s:'BNR', u:'https://www.bnr.ro'}
+    {t:{en:'CASS exceptions (salaried persons; specific exempt categories incl. students)',ro:'Excep\u021bii CASS (salaria\u021bi; categorii scutite, incl. studen\u021bi)'}, s:'Legea 227/2015, art. 154, 174 \u00b7 PwC', u:P_SSC},
+    {t:{en:'Pensioners exempt from CAS on independent-activity income',ro:'Pensionarii scuti\u021bi de CAS pentru venituri din activit\u0103\u021bi independente'}, s:'art. 150 \u00b7 PwC', u:P_SSC},
+    {t:{en:'VAT registration threshold 395,000 RON (from Sept 2025); B2B cross-border rules',ro:'Plafon TVA 395.000 RON (din sept. 2025); reguli B2B extern'}, s:'art. 310, 278 \u00b7 PwC \u00b7 Comisia European\u0103', u:P_VAT, u2:YOUREU},
+    {t:{en:'FX conversion at official NBR rates for tax purposes',ro:'Conversia valutar\u0103 la cursul oficial BNR \u00een scopuri fiscale'}, s:'BNR / Codul fiscal', u:BNR}
   ]
 };
 function renderRefs(){
@@ -767,7 +778,7 @@ function renderRefs(){
     el.innerHTML = `
       <button class="refs-toggle" aria-expanded="${open}">\u{1F4CE} ${T().refs_label} <span class="n">${items.length}</span></button>
       <div class="refs-panel">${items.map(r=>
-        `\u2022 ${r.t[state.lang]??r.t.en} \u2014 <span class="src">${r.s}</span>${r.u?` \u00b7 <a href="${r.u}" target="_blank" rel="noopener">link</a>`:''}`
+        `\u2022 ${r.t[state.lang]??r.t.en} \u2014 <span class="src">${r.s}</span>${[r.u,r.u2,r.u3].filter(Boolean).map((u,i)=>` \u00b7 <a href="${u}" target="_blank" rel="noopener">${i===0?'link':'alt '+i}</a>`).join('')}`
       ).join('<br>')}</div>`;
     el.querySelector('.refs-toggle').onclick = ()=>{ el.classList.toggle('open'); el.querySelector('.refs-toggle').setAttribute('aria-expanded', el.classList.contains('open')); };
   });
